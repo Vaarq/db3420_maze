@@ -10,7 +10,24 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
+    <script>
+        function saveEdits(){
+            var editElem = document.getElementById("edit");
 
+            var userVersion = editElem.innerHTML;
+
+            localStorage.userEdits = userVersion;
+
+            document.getElementById("update").innerHTML="Notes Saved!"
+
+
+            function checkEdits() {
+                if(localStorage.userEdits!=null) {
+                    document.getElementById("edit").innerHTML=localStorage.userEdits;
+                }
+            }
+        }
+    </script>
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -31,7 +48,7 @@
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
 </head>
-<body>
+<body onload="checkEdits()">
 
 <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
@@ -74,7 +91,7 @@
             <li class="active">
                 <a href="notifications.html">
                     <i class="pe-7s-bell"></i>
-                    <p>Notifications</p>
+                    <p>My Notes</p>
                 </a>
             </li>
             <li class="active-pro">
@@ -173,14 +190,18 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Notifications</h4>
-                        <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p>
+                        <h4 class="title">Notes</h4>
 
                     </div>
                     <div class="content">
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>Notifications Style</h5>
+
+                                <div id="edit" contenteditable="true">
+                                    Original content.
+                                </div>
+                                <input type="button" value="Save Notes" onclick="saveEdits()"/>
+                                <!---<h5>Notifications Style</h5>
                                 <div class="alert alert-info">
                                     <span>This is a plain notification</span>
                                 </div>
@@ -197,26 +218,8 @@
                                     <button type="button" aria-hidden="true" class="close">×</button>
                                     <span data-notify="icon" class="pe-7s-bell"></span>
                                     <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>Notification states</h5>
-                                <div class="alert alert-info">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Info - </b> This is a regular notification made with ".alert-info"</span>
-                                </div>
-                                <div class="alert alert-success">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Success - </b> This is a regular notification made with ".alert-success"</span>
-                                </div>
-                                <div class="alert alert-warning">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
-                                </div>
+                                </div> 
+                                        -->
                             </div>
                         </div>
                         <br>
